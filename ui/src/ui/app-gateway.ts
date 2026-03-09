@@ -232,6 +232,7 @@ export function connectGateway(host: GatewayHost) {
         return;
       }
       host.connected = false;
+      stopChatPoll(host as unknown as import("./app-chat.ts").ChatHost);
       // Code 1012 = Service Restart (expected during config saves, don't show as error)
       host.lastErrorCode =
         resolveGatewayErrorDetailCode(error) ??
